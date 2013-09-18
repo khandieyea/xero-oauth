@@ -15,11 +15,8 @@
     }
     
     "autoload": {
-       // "classmap": [
-        //    ["src/"]
-        //],
         "psr-0": {
-            "Xero": "src/"
+            "Xero": "src"
         }
     }
 }
