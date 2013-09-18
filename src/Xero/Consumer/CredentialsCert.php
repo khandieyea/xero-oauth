@@ -1,6 +1,6 @@
 <?php
 
-namespace OAuth\Common\Consumer;
+namespace Xero\Consumer;
 
 /**
  * Value object for the credentials of an OAuth service.

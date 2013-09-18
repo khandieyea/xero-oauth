@@ -1,13 +1,11 @@
 <?php
 
-namespace OAuth\OAuth1\Signature;
+namespace Xero\Signature;
 
 use OAuth\OAuth1\Signature\Signature;
 
 class SignatureRsaSha1 extends Signature
 {
-
-
 
     protected function hash($data)
     {

@@ -9,9 +9,16 @@
             "email": "warren@challengeaccepted.co.nz"
         }
     ],
+
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/khandieyea/PHPoAuthLib"
+        }
+    ],
     "require": {
         "php": ">=5.3.0",
-        "lusitanian/oauth": "v0.2.2"
+        "lusitanian/oauth": "dev-intf"
     },
     
     "autoload": {

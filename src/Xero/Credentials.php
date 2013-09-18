@@ -1,11 +1,14 @@
 <?php
 
-namespace OAuth\Common\Consumer;
+namespace Xero;
+
+use \Xero\Consumer\CredentialsCert;
 
 /**
  * Value object for the credentials of an OAuth service.
  */
-class CredentialsRsaSha1 extends Credentials
+class Credentials extends \OAuth\Common\Consumer\Credentials 
+// implements \OAuth\Common\Consumer\Credentials
 {
     /**
      * @var string
