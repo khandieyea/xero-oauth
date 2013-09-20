@@ -2,8 +2,8 @@
 
 namespace Xero;
 
- use OAuth\OAuth1\Signature\SignatureInterface;
-use OAuth\OAuth1\Signature\SignatureRsaSha1;
+use Xero\Signature\SignatureRsaSha1;
+use OAuth\OAuth1\Signature\SignatureInterface;
 
 use OAuth\OAuth1\Token\StdOAuth1Token;
 use OAuth\Common\Http\Exception\TokenResponseException;
@@ -23,7 +23,7 @@ class PrivateClient  extends \OAuth\OAuth1\Service\AbstractService{
     {
     	
         //This is a bit of a hack; but Not really sure what else todo.
-        //$signature = new SignatureRsaSha1($credentials);
+        $signature = new SignatureRsaSha1($credentials);
 
 
        parent::__construct($credentials, $httpClient, $storage, $signature, $baseApiUri);

@@ -8,7 +8,6 @@ use \Xero\Consumer\CredentialsCert;
  * Value object for the credentials of an OAuth service.
  */
 class Credentials extends \OAuth\Common\Consumer\Credentials implements \OAuth\Common\Consumer\CredentialsInterface
-// implements \OAuth\Common\Consumer\Credentials
 {
     /**
      * @var string

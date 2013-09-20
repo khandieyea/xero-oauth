@@ -43,7 +43,7 @@ class CredentialsCert
         
 
         $this->cacheKey = $this->path;
-
+        echo pre($this->path);
         if(!is_readable($this->path))
             throw new \exception('SSL Cert not found - '.$this->path);
 
