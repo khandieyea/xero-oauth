@@ -3,6 +3,7 @@
     "description": "Xero-OAuth based on lusitanian/oauth",
     "keywords": ["oauth", "authentication", "authorization", "security"],
     "license": "MIT",
+
     "authors": [
         {
             "name": "Warren Strong",
@@ -16,14 +17,18 @@
             "url": "https://github.com/khandieyea/PHPoAuthLib"
         }
     ],
+    
     "require": {
         "php": ">=5.3.0",
-        "lusitanian/oauth": "dev-intf"
+        "lusitanian/oauth": "dev-credentialsInterface"
     },
     
     "autoload": {
         "psr-0": {
             "Xero": "src"
         }
-    }
+    },
+
+    "minimum-stability": "dev"
+
 }

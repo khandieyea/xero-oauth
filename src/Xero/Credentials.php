@@ -7,7 +7,7 @@ use \Xero\Consumer\CredentialsCert;
 /**
  * Value object for the credentials of an OAuth service.
  */
-class Credentials extends \OAuth\Common\Consumer\Credentials 
+class Credentials extends \OAuth\Common\Consumer\Credentials implements \OAuth\Common\Consumer\CredentialsInterface
 // implements \OAuth\Common\Consumer\Credentials
 {
     /**
@@ -30,12 +30,19 @@ class Credentials extends \OAuth\Common\Consumer\Credentials
      * @param string $consumerSecret
      * @param string $callbackUrl
      */
-    public function __construct($consumerId, $consumerSecret, $privateKey, $publicKey, $callbackUrl='')
+    public function __construct($consumerId, $consumerSecret, $callbackUrl='')
     {   
 
-        $this->privateCert  = new CredentialsCert($privateKey);
-        $this->publicCert   = new CredentialsCert($publicKey);
-        
+        if(is_array($callbackUrl))
+        {
+            if(isset($callbackUrl['privateCert']))
+               $this->privateCert  = new CredentialsCert($callbackUrl['privateCert']);
+
+            if(isset($callbackUrl['publicCert']))
+               $this->publicCert  = new CredentialsCert($callbackUrl['publicCert']);
+           
+        }
+
         parent::__construct($consumerId, $consumerSecret, $callbackUrl);
 
     }

@@ -9,6 +9,7 @@ use OAuth\OAuth1\Token\StdOAuth1Token;
 use OAuth\Common\Http\Exception\TokenResponseException;
 use OAuth\Common\Http\Uri\Uri;
 
+use OAuth\Common\Consumer\CredentialsInterface;
 use Xero\Credentials;
 
 use OAuth\Common\Http\Uri\UriInterface;
@@ -18,14 +19,9 @@ use OAuth\Common\Http\Client\ClientInterface;
 
 class PrivateClient  extends \OAuth\OAuth1\Service\AbstractService{
 
-    public function __construct(Credentials $credentials, ClientInterface $httpClient, TokenStorageInterface $storage, SignatureInterface $signature, UriInterface $baseApiUri = null)
+    public function __construct(CredentialsInterface $credentials, ClientInterface $httpClient, TokenStorageInterface $storage, SignatureInterface $signature, UriInterface $baseApiUri = null)
     {
-
-    	var_dump(get_class($credentials) .' - '. implode(',', class_implements($credentials)));
-    	var_dump(get_class($httpClient) .' - '. implode(',', class_implements($httpClient)));
-    	var_dump(get_class($storage) .' - '. implode(',', class_implements($storage)));
-    	var_dump(get_class($signature) .' - '. implode(',', class_implements($signature)));
-
+    	
         //This is a bit of a hack; but Not really sure what else todo.
         //$signature = new SignatureRsaSha1($credentials);
 

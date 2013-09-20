@@ -12,6 +12,7 @@ class SignatureRsaSha1 extends Signature
       
         $cert = $this->credentials->privateCert->getCert(true);
 
+
         //Resource
         $pkID = openssl_pkey_get_private($cert);
 
