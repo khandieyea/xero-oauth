@@ -35,15 +35,17 @@ class CredentialsCert
         return $this->path;
     }
 
-    public function getCert($cache=false)
+    public function getCert($cache=true)
     {
 
         if($cache === true && $this->cert !== false && $this->cacheKey === $this->path)
-                return $this->cert;
-        
+        {
+            echo pre('Using cached cert');
+            return $this->cert;    
+        }
 
         $this->cacheKey = $this->path;
-        echo pre($this->path);
+
         if(!is_readable($this->path))
             throw new \exception('SSL Cert not found - '.$this->path);
 

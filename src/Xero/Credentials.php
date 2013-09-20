@@ -10,21 +10,6 @@ use \Xero\Consumer\CredentialsCert;
 class Credentials extends \OAuth\Common\Consumer\Credentials implements \OAuth\Common\Consumer\CredentialsInterface
 {
     /**
-     * @var string
-     */
-    protected $publicKey;
-
-    /**
-     * @var string
-     */
-    protected $privateKey;
-
-    /**
-     * @var string
-     */
-    protected $callbackUrl;
-
-    /**
      * @param string $consumerId
      * @param string $consumerSecret
      * @param string $callbackUrl

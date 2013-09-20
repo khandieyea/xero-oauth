@@ -17,7 +17,8 @@ use OAuth\Common\Storage\TokenStorageInterface;
 use OAuth\Common\Http\Client\ClientInterface;
 
 
-class PrivateClient  extends \OAuth\OAuth1\Service\AbstractService{
+class PrivateClient  extends \OAuth\OAuth1\Service\AbstractService
+{
 
     public function __construct(CredentialsInterface $credentials, ClientInterface $httpClient, TokenStorageInterface $storage, SignatureInterface $signature, UriInterface $baseApiUri = null)
     {
@@ -25,27 +26,42 @@ class PrivateClient  extends \OAuth\OAuth1\Service\AbstractService{
         //This is a bit of a hack; but Not really sure what else todo.
         $signature = new SignatureRsaSha1($credentials);
 
-
-       parent::__construct($credentials, $httpClient, $storage, $signature, $baseApiUri);
+        parent::__construct($credentials, $httpClient, $storage, $signature, $baseApiUri);
 
         if (null === $baseApiUri) {
             $this->baseApiUri = new Uri('https://api.xero.com/api.xro/2.0/');
         }
 
+        //Hack like a shit cunt.
         $a = new \OAuth\OAuth1\Token\StdOAuth1Token();
-        
-        $a->setAccessToken('KIP4ZWHIGMRZZRM9S33NCDVXSQSNFT');
-        $a->setAccessTokenSecret('TBGIBEBPGIUUTAWZHD0HVIZ3OZH7QG');
-        
+        $a->setAccessToken($this->credentials->getConsumerId());
+        $a->setAccessTokenSecret($this->credentials->getConsumerSecret());
         $this->storage->storeAccessToken($this->service(), $a);
 
     }
+
+
+    protected function getExtraApiHeaders()
+    {
+        return array(
+            'Accept' => 'application/json',
+        );
+    }
+    
+    public function request($path, $method = 'GET', $body = null, array $extraHeaders = array())
+    {
+        echo pre(__METHOD__.__LINE__);
+        
+        return parent::request($path,$method,$body,$extraHeaders);            
+    }
+
 
     /**
      * {@inheritdoc}
      */
     public function getRequestTokenEndpoint()
     {
+        echo pre(__METHOD__.__LINE__);
         return new Uri($this->baseApiUri . 'oauth/request_token');
     }
 
@@ -54,6 +70,7 @@ class PrivateClient  extends \OAuth\OAuth1\Service\AbstractService{
      */
     public function getAuthorizationEndpoint()
     {
+        echo pre(__METHOD__.__LINE__);
         return new Uri($this->baseApiUri);
     }
 
@@ -62,6 +79,7 @@ class PrivateClient  extends \OAuth\OAuth1\Service\AbstractService{
      */
     public function getAccessTokenEndpoint()
     {
+        echo pre(__METHOD__.__LINE__);
         return new Uri($this->baseApiUri . 'oauth/access_token');
     }
 
@@ -70,6 +88,7 @@ class PrivateClient  extends \OAuth\OAuth1\Service\AbstractService{
      */
     protected function parseRequestTokenResponse($responseBody)
     {
+        echo pre(__METHOD__.__LINE__);
         parse_str($responseBody, $data);
 
         if (null === $data || !is_array($data)) {
@@ -86,6 +105,7 @@ class PrivateClient  extends \OAuth\OAuth1\Service\AbstractService{
      */
     protected function parseAccessTokenResponse($responseBody)
     {
+        echo pre(__METHOD__.__LINE__);
         parse_str($responseBody, $data);
 
         if (null === $data || !is_array($data)) {
@@ -112,6 +132,7 @@ class PrivateClient  extends \OAuth\OAuth1\Service\AbstractService{
     function getSignatureMethod()
     {
         //This actually does nothing - it's just a placeholder to please the signatureinterface
+        echo pre(__METHOD__.__LINE__);
         return 'RSA-SHA1';
     }
 }
