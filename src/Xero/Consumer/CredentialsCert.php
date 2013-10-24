@@ -40,8 +40,8 @@ class CredentialsCert
 
         if($cache === true && $this->cert !== false && $this->cacheKey === $this->path)
         {
-            echo pre('Using cached cert');
-            return $this->cert;    
+           // echo pre('Using cached cert');
+            //return $this->cert;    
         }
 
         $this->cacheKey = $this->path;
